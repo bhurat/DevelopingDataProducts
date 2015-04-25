@@ -1,0 +1,124 @@
+---
+title       : Interactive Graphing 
+subtitle    : The Future of Math Education
+author      : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+knit        : slidify::knit2slides
+---
+
+## Shiny Apps In Education
+
+With more and more technology being integrated into classrooms, there is a growing market for interactive educational apps. 
+
+Using Shiny, it is easier than ever to make these and distribute them to students.
+
+This app is but one example of plenty of possible uses of Shiny in the classroom. 
+
+---
+
+## This App As An Educational Tool
+
+This app, which is an interactive look at conic sections, features many features useful to teachers: 
+
+- Control over the variables that matter to define conic sections. 
+- Exploration of various shapes through the use of Shiny's dynamic UI
+- Easy to understand code to customize code for any equation the teacher might need
+- Easy to use for the students
+
+--- &twocol
+
+## How It Works
+
+This app works by creating data sets using parametric examples. Here's an example for an ellipse
+
+*** =left
+```{r,echo=FALSE}
+x<-numeric()
+y<-numeric()
+a = 3
+b = 2
+n<-300
+for (t in 0:(n-1)){
+        x[t]=a*cos(2*pi*t/n)
+        y[t]=-b*sin(2*pi*t/n)
+        }
+plot(y~x,xlim=c(-5,5),ylim=c(-5,5))
+```
+
+*** =right
+
+```{r,eval=FALSE}
+x<-numeric()
+y<-numeric()
+a = 3
+b = 2
+n<-300
+
+for (t in 0:(n-1)){
+        x[t]=a*cos(2*pi*t/n)
+        y[t]=-b*sin(2*pi*t/n)
+        }
+plot(y~x,xlim=c(-5,5),
+     ylim=c(-5,5))
+```
+
+
+
+---
+
+## Where It Can Go
+
+As you can see, the process is simple enough. With this, an interactive graphing app is easily programmable for your class, whether you're teaching conic sections, linear equations, cardioids, or lemniscates. 
+
+
+<!-- Center image on slide -->
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script type="text/javascript">
+$(function() {     
+  $("p:has(img)").addClass('centered'); 
+});
+</script>
+```{r,echo=FALSE}
+n<-300
+fp<-3
+xp<-numeric()
+yp<-numeric()
+for (t in 0:(n-1)){
+                xp[t]=(-1)^t*2*fp*t/(.2*n)
+                yp[t]=fp*(t/(.2*n))^2
+        }
+
+mlin<-2
+blin<-3
+xlin<-numeric()
+ylin<-numeric()
+for (t in 0:(n-1)){
+              xlin[t]=(-1)^t*(t/(.1*n))
+              ylin[t]=(-1)^t*(mlin*t/(.1*n))+blin
+        }
+
+ac<-3
+xc<-numeric()
+yc<-numeric()
+for (t in 0:(n-1)){
+                xc[t]=ac*cos(2*pi*t/n)*(1-cos(2*pi*t/n))
+                yc[t]=ac*sin(2*pi*t/n)*(1-cos(2*pi*t/n))
+        }
+
+al<-3
+xl<-numeric()
+yl<-numeric()
+for (t in 0:(n-1)){
+                xl[t]<-(al*cos(2*pi*t/n))/(1+sin(2*pi*t/n)^2)
+                yl[t]<-(al*sin(2*pi*t/n)*cos(2*pi*t/n))/(1+sin(2*pi*t/n)^2)
+        }
+
+par(mfrow=c(2,2))
+plot(yp~xp,xlim=c(-10,10),ylim=c(-10,10))
+plot(ylin~xlin,xlim=c(-10,10),ylim=c(-10,10))
+plot(yc~xc,xlim=c(-10,10),ylim=c(-10,10))
+plot(yl~xl,xlim=c(-10,10),ylim=c(-10,10))
+```
+
